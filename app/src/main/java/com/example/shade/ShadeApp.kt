@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -51,56 +52,13 @@ fun WeatherTopAppBar(scrollBehavior: TopAppBarScrollBehavior) {
 
 }
 
-class weatherData(
-) {
-    companion object {
-        val iconRes: Int = (R.drawable.ic_launcher_background)
-        val description: String = "pogoda super"
-        val temperature: String = "35"
-        val date: String = "Saturday"
-        val city: String = "Kharkiv"
-
-    }
-}
-
 @Composable
 fun WeatherHomeScreen(weatherUiState: String, modifier: Modifier) {
-    Surface(
-        color = MaterialTheme.colorScheme.surfaceDim,
-        modifier = Modifier.padding(16.dp),
-        shape = RoundedCornerShape(32.dp)
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            Surface {
-
-            }
-            Text(
-                text = "${weatherData.city}, ${weatherData.date}",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "${weatherData.temperature}°C",
-                    fontSize = 48.sp
-                )
-                Icon(
-                    painter = painterResource(id = weatherData.iconRes),
-                    contentDescription = "Weather icon"
-                )
-            }
-            Text(
-                text = weatherData.description,
-                fontSize = 16.sp
-            )
-            Text(text = weatherUiState)
-            // ... (остальные элементы интерфейса)
-        }
+            Text(text = weatherUiState, modifier = Modifier.safeDrawingPadding())
     }
 }
