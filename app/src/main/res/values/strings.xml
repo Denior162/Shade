@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Shade</string>
+    <string name="error">Error  ¯\\_(ツ)_/¯</string>
+    <string name="retry">Retry</string>
 </resources>

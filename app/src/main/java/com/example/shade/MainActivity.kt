@@ -29,14 +29,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ShadeTheme {
-                val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = { WeatherTopAppBar(scrollBehavior = scrollBehavior) }
-                )
-                { innerPadding ->
-                    ShadeApp(modifier = Modifier.padding(innerPadding).safeDrawingPadding())
-                }
+                    ShadeApp()
             }
         }
     }
