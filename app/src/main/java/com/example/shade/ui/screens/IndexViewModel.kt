@@ -6,20 +6,21 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shade.network.IndexApi
-import com.example.shade.network.UvResponse
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
 
 sealed interface IndexUiState {
-    data class Success(val indexes: //UvResponse
-    String
+    data class Success(
+        val indexes: //UvResponse
+        String
 
     ) : IndexUiState
-        //IndexUiState
-        data object Error : IndexUiState
-     data object Loading : IndexUiState
+
+    //IndexUiState
+    data object Error : IndexUiState
+    data object Loading : IndexUiState
 }
 
 

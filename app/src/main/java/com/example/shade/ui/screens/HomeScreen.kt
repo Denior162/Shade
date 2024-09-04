@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.shade.R
 
 @Composable
@@ -41,7 +40,8 @@ fun HomeScreen(
                 ,
                 modifier = modifier.fillMaxWidth()
             )
-            is IndexUiState.Error -> ErrorScreen(retryAction ,modifier = modifier.fillMaxSize())
+
+            is IndexUiState.Error -> ErrorScreen(retryAction, modifier = modifier.fillMaxSize())
         }
 
     }
