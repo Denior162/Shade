@@ -12,16 +12,20 @@ private const val BASE_URL =
     "https://currentuvindex.com/api/v1/"
 
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+    .addConverterFactory(
+        ScalarsConverterFactory.create()
+        //Json.asConverterFactory("application/json".toMediaType())
+            )
     .baseUrl(BASE_URL)
     .build()
 
 interface StopLightApiService {
     @GET("uvi")
-    suspend fun getPhotos(
+    suspend fun getIndexes(
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
-    ): UvResponse
+    ): String
+            //UvResponse
 }
 
 object IndexApi {

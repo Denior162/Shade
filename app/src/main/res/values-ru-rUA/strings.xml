@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Shade</string>
-    <string name="error">Ошибка ¯\\_(ツ)_/¯</string>
+    <string name="error">Ошибка</string>
     <string name="retry">Повторить попытку</string>
+    <string name="arms_spread">¯\\_(ツ)_/¯</string>
 </resources>

@@ -1,39 +1,52 @@
 package com.example.shade.ui.screens
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shade.network.IndexApi
 import com.example.shade.network.UvResponse
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 
 
 sealed interface IndexUiState {
-    data class Success(val indexes: UvResponse) : IndexUiState
-    data object Error : IndexUiState
-    data object Loading : IndexUiState
+    data class Success(val indexes: //UvResponse
+    String
+
+    ) : IndexUiState
+        //IndexUiState
+        data object Error : IndexUiState
+     data object Loading : IndexUiState
 }
 
 
-class WeatherViewModel : ViewModel() {
-    private val _indexUiState = MutableStateFlow<IndexUiState>(IndexUiState.Loading)
-    val indexUiState = _indexUiState.asStateFlow()
+class IndexViewModel : ViewModel() {
+    var indexUiState: IndexUiState by mutableStateOf(IndexUiState.Loading)
+        private set
+
 
     init {
         getUVIs()
     }
 
-    private fun getUVIs() {
+    fun getUVIs() {
         viewModelScope.launch {
-            try {
-                val response = IndexApi.retrofitService.getPhotos(
-                    latitude = 35.0,
-                    longitude = 50.0
+            indexUiState = IndexUiState.Loading
+            indexUiState = try {
+                val response = IndexApi.retrofitService.getIndexes(
+                    latitude = 50.0,
+                    longitude = 35.0
                 )
-                _indexUiState.value = IndexUiState.Success(response)
+                IndexUiState.Success(response)
+            } catch (e: IOException) {
+                IndexUiState.Error
+            } catch (e: HttpException) {
+                IndexUiState.Error
             } catch (e: Exception) {
-                _indexUiState.value = IndexUiState.Error
+                IndexUiState.Error
             }
         }
     }

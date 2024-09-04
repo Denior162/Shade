@@ -8,7 +8,6 @@ data class UvResponse(
     val forecast: List<Forecast>
 )
 
-
 @Serializable
 data class CurrentUv(
     val time: String,
